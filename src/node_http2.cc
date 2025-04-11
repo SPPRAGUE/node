@@ -846,7 +846,7 @@ void Http2Session::Close(uint32_t code, bool socket_closed) {
 // but this is faster and does not fail if the stream is not found.
 BaseObjectPtr<Http2Stream> Http2Session::FindStream(int32_t id) {
   auto s = streams_.find(id);
-  return s != streams_.end() ? s->second : BaseObjectPtr<Http2Stream>();
+  return s != streams_.end() ? s->second : nullptr;
 }
 
 bool Http2Session::CanAddStream() {
@@ -1211,7 +1211,7 @@ int Http2Session::OnFrameNotSent(nghttp2_session* handle,
     // closed but the Http2Session will still be up causing a memory leak.
     // Therefore, if the GOAWAY frame couldn't be send due to
     // ERR_SESSION_CLOSING we should force close from our side.
-    if (frame->hd.type != 0x03) {
+    if (frame->hd.type != NGHTTP2_GOAWAY) {
       return 0;
     }
   }
@@ -2084,9 +2084,7 @@ void Http2Session::OnStreamRead(ssize_t nread, const uv_buf_t& buf_) {
     // Shrink to the actual amount of used data.
     std::unique_ptr<BackingStore> old_bs = std::move(bs);
     bs = ArrayBuffer::NewBackingStore(env()->isolate(), nread);
-    memcpy(static_cast<char*>(bs->Data()),
-           static_cast<char*>(old_bs->Data()),
-           nread);
+    memcpy(bs->Data(), old_bs->Data(), nread);
   } else {
     // This is a very unlikely case, and should only happen if the ReadStart()
     // call in OnStreamAfterWrite() immediately provides data. If that does
