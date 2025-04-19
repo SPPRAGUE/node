@@ -207,6 +207,7 @@
   V(inputs_string, "inputs")                                                   \
   V(internal_binding_string, "internalBinding")                                \
   V(internal_string, "internal")                                               \
+  V(inverse_string, "inverse")                                                 \
   V(ipv4_string, "IPv4")                                                       \
   V(ipv6_string, "IPv6")                                                       \
   V(isclosing_string, "isClosing")                                             \
@@ -284,6 +285,7 @@
   V(onsignal_string, "onsignal")                                               \
   V(onunpipe_string, "onunpipe")                                               \
   V(onwrite_string, "onwrite")                                                 \
+  V(ongracefulclosecomplete_string, "ongracefulclosecomplete")                 \
   V(openssl_error_stack, "opensslErrorStack")                                  \
   V(options_string, "options")                                                 \
   V(order_string, "order")                                                     \
@@ -334,6 +336,7 @@
     "const __esModule = true;")                                                \
   V(require_string, "require")                                                 \
   V(resource_string, "resource")                                               \
+  V(result_string, "result")                                                   \
   V(retry_string, "retry")                                                     \
   V(return_arrays_string, "returnArrays")                                      \
   V(return_string, "return")                                                   \
@@ -361,12 +364,14 @@
   V(specifier_string, "specifier")                                             \
   V(stack_string, "stack")                                                     \
   V(standard_name_string, "standardName")                                      \
+  V(start_string, "start")                                                     \
   V(start_time_string, "startTime")                                            \
   V(state_string, "state")                                                     \
   V(statement_string, "statement")                                             \
   V(stats_string, "stats")                                                     \
   V(status_string, "status")                                                   \
   V(stdio_string, "stdio")                                                     \
+  V(step_string, "step")                                                       \
   V(stream_average_duration_string, "streamAverageDuration")                   \
   V(stream_count_string, "streamCount")                                        \
   V(subject_string, "subject")                                                 \
@@ -460,6 +465,7 @@
   V(tty_constructor_template, v8::FunctionTemplate)                            \
   V(write_wrap_template, v8::ObjectTemplate)                                   \
   V(worker_heap_snapshot_taker_template, v8::ObjectTemplate)                   \
+  V(worker_heap_statistics_taker_template, v8::ObjectTemplate)                 \
   V(x509_constructor_template, v8::FunctionTemplate)
 
 #define PER_REALM_STRONG_PERSISTENT_VALUES(V)                                  \
